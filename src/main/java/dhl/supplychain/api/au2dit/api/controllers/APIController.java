@@ -256,200 +256,197 @@ public class APIController {
 
         String rpta = "";
 
-        if (type == 1) // Etiqueta normal
-        {
-            rpta = "^XA";
-            rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
-            rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
-            rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
-            rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD1 Pieza^FS";
-            rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
-            rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
-            rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
-            rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
-            rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
-            rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
-            rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
-            rpta += "^FO605,120^GB80,300,100^FS";
-            rpta += "^LRY";
-            rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
-            rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
-            rpta += "^XZ";
-            // System.out.println("Etiqueta " + qtyLabel + " Normal Impresa");
-        }
-        else if (type == 2) // Etiqueta Dañada
-        {
-            rpta = "^XA";
-            rpta += "^FO120,0^FB370,4,,^A0B,26,28^FDD^FS";
-            rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
-            rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
-            rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
-            rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD1 Pieza^FS";
-            rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
-            rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
-            rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
-            rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
-            rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
-            rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
-            rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
-            rpta += "^FO605,120^GB80,300,100^FS";
-            rpta += "^LRY";
-            rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
-            rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
-            rpta += "^XZ";
-            // System.out.println("Etiqueta " + qtyLabel + " Dañada Impresa");
-        }
-        else if (type == 3) // Etiqueta Cambiada
-        {
-            rpta = "^XA";
-            rpta += "^FO120,0^FB370,4,,^A0B,26,28^FDC^FS";
-            rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
-            rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
-            rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
-            rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD1 Pieza^FS";
-            rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
-            rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
-            rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
-            rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
-            rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
-            rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
-            rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
-            rpta += "^FO605,120^GB80,300,100^FS";
-            rpta += "^LRY";
-            rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
-            rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
-            rpta += "^XZ";
-            // System.out.println("Etiqueta " + qtyLabel + " Cambiada Impresa");
-        }
-        else if (type == 4) // Etiqueta Sobrante
-        {
-            rpta = "^XA";
-            rpta += "^FO120,0^FB370,4,,^A0B,26,28^FDS^FS";
-            rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
-            rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
-            rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
-            rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD1 Pieza^FS";
-            rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
-            rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
-            rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
-            rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
-            rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
-            rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
-            rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
-            rpta += "^FO605,120^GB80,300,100^FS";
-            rpta += "^LRY";
-            rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
-            rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
-            rpta += "^XZ";
-            // System.out.println("Etiqueta " + qtyLabel + " Sobrante Impresa");
-        }
-        else if (type == 5) // Etiqueta Sobrante Dañada
-        {
-            rpta = "^XA";
-            rpta += "^FO120,0^FB370,4,,^A0B,26,28^FDSD^FS";
-            rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
-            rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
-            rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
-            rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD1 Pieza^FS";
-            rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
-            rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
-            rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
-            rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
-            rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
-            rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
-            rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
-            rpta += "^FO605,120^GB80,300,100^FS";
-            rpta += "^LRY";
-            rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
-            rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
-            rpta += "^XZ";
-            // System.out.println("Etiqueta " + qtyLabel + " SD impresa");
-        }
-        else if (type == 9) // Etiqueta Sobrante Cambiada
-        {
-            rpta = "^XA";
-            rpta += "^FO120,0^FB370,4,,^A0B,26,28^FDSC^FS";
-            rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
-            rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
-            rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
-            rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD1 Pieza^FS";
-            rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
-            rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
-            rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
-            rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
-            rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
-            rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
-            rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
-            rpta += "^FO605,120^GB80,300,100^FS";
-            rpta += "^LRY";
-            rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
-            rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
-            rpta += "^XZ";
-            // System.out.println("Etiqueta " + qtyLabel + " SC impresa");
-        }
-        else if (type == 6)// Imprimir para bultos (Teorica)
-        {
-            rpta = "^XA";
-            rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
-            rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
-            rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
-            rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD"+ pe.getCantidad() +" Pieza^FS";
-            rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
-            rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
-            rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
-            rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
-            rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
-            rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
-            rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
-            rpta += "^FO605,120^GB80,300,100^FS";
-            rpta += "^LRY";
-            rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
-            rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
-            rpta += "^XZ";
-            System.out.println("Etiqueta de Bulto (Teorica: "+ pe.getCantidad() +") impresa");
-        }
-        else if (type == 7)// Imprimir para bultos (Sobrante)
-        {
-            rpta = "^XA";
-            rpta += "^FO120,0^FB370,4,,^A0B,26,28^FDS^FS";
-            rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
-            rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
-            rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
-            rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD"+ (pe.getCantidadReportada() - pe.getCantidad()) +" Pieza^FS";
-            rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
-            rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
-            rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
-            rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
-            rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
-            rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
-            rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
-            rpta += "^FO605,120^GB80,300,100^FS";
-            rpta += "^LRY";
-            rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
-            rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
-            rpta += "^XZ";
-            System.out.println("Etiqueta de Bulto (Sobrante: "+ (pe.getCantidadReportada() - pe.getCantidad()) +") impresa");
-        }
-        else if (type == 8) // Imprimir para Bultos (Cantida Sobrante < Cantidad Teorica)
-        {
-            rpta = "^XA";
-            rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
-            rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
-            rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
-            rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD"+ pe.getCantidadReportada() +" Pieza^FS";
-            rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
-            rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
-            rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
-            rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
-            rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
-            rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
-            rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
-            rpta += "^FO605,120^GB80,300,100^FS";
-            rpta += "^LRY";
-            rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
-            rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
-            rpta += "^XZ";
-            System.out.println("Etiqueta de Bulto (Reportada: "+ pe.getCantidadReportada() +") impresa");
+        switch (type) {
+            case 1: // Etiqueta normal
+                rpta = "^XA";
+                    rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
+                    rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
+                    rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
+                    rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD1 Pieza^FS";
+                    rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
+                    rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
+                    rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
+                    rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
+                    rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
+                    rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
+                    rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
+                    rpta += "^FO605,120^GB80,300,100^FS";
+                    rpta += "^LRY";
+                    rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
+                    rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
+                    rpta += "^XZ";
+                    // System.out.println("Etiqueta " + qtyLabel + " Normal Impresa");
+                break;
+            case 2: // Etiqueta dañada
+                rpta = "^XA";
+                    rpta += "^FO120,0^FB370,4,,^A0B,26,28^FDD^FS";
+                    rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
+                    rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
+                    rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
+                    rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD1 Pieza^FS";
+                    rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
+                    rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
+                    rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
+                    rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
+                    rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
+                    rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
+                    rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
+                    rpta += "^FO605,120^GB80,300,100^FS";
+                    rpta += "^LRY";
+                    rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
+                    rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
+                    rpta += "^XZ";
+                    // System.out.println("Etiqueta " + qtyLabel + " Dañada Impresa");
+                break;
+            case 3: // Etiqueta cambiada
+                rpta = "^XA";
+                    rpta += "^FO120,0^FB370,4,,^A0B,26,28^FDC^FS";
+                    rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
+                    rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
+                    rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
+                    rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD1 Pieza^FS";
+                    rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
+                    rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
+                    rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
+                    rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
+                    rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
+                    rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
+                    rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
+                    rpta += "^FO605,120^GB80,300,100^FS";
+                    rpta += "^LRY";
+                    rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
+                    rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
+                    rpta += "^XZ";
+                    // System.out.println("Etiqueta " + qtyLabel + " Cambiada Impresa");     
+                break;
+            case 4: // Etiqueta sobrante
+                rpta = "^XA";
+                    rpta += "^FO120,0^FB370,4,,^A0B,26,28^FDS^FS";
+                    rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
+                    rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
+                    rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
+                    rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD1 Pieza^FS";
+                    rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
+                    rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
+                    rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
+                    rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
+                    rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
+                    rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
+                    rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
+                    rpta += "^FO605,120^GB80,300,100^FS";
+                    rpta += "^LRY";
+                    rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
+                    rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
+                    rpta += "^XZ";
+                    // System.out.println("Etiqueta " + qtyLabel + " Sobrante Impresa");
+                break;
+            case 5: // Etiqueta sobrante dañada
+                rpta = "^XA";
+                    rpta += "^FO120,0^FB370,4,,^A0B,26,28^FDSD^FS";
+                    rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
+                    rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
+                    rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
+                    rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD1 Pieza^FS";
+                    rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
+                    rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
+                    rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
+                    rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
+                    rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
+                    rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
+                    rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
+                    rpta += "^FO605,120^GB80,300,100^FS";
+                    rpta += "^LRY";
+                    rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
+                    rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
+                    rpta += "^XZ";
+                    // System.out.println("Etiqueta " + qtyLabel + " SD impresa");
+                break;
+            case 9: // Etiqueta sobrante cambiada
+                rpta = "^XA";
+                    rpta += "^FO120,0^FB370,4,,^A0B,26,28^FDSC^FS";
+                    rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
+                    rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
+                    rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
+                    rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD1 Pieza^FS";
+                    rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
+                    rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
+                    rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
+                    rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
+                    rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
+                    rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
+                    rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
+                    rpta += "^FO605,120^GB80,300,100^FS";
+                    rpta += "^LRY";
+                    rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
+                    rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
+                    rpta += "^XZ";
+                    // System.out.println("Etiqueta " + qtyLabel + " SC impresa");
+                break;
+            case 6: // Imprimir para bultos (teórica)
+                rpta = "^XA";
+                    rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
+                    rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
+                    rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
+                    rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD"+ pe.getCantidad() +" Pieza^FS";
+                    rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
+                    rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
+                    rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
+                    rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
+                    rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
+                    rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
+                    rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
+                    rpta += "^FO605,120^GB80,300,100^FS";
+                    rpta += "^LRY";
+                    rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
+                    rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
+                    rpta += "^XZ";
+                    System.out.println("Etiqueta de Bulto (Teorica: "+ pe.getCantidad() +") impresa");
+                break;
+            case 7: // Imprimir para bultos (sobrante)
+                rpta = "^XA";
+                    rpta += "^FO120,0^FB370,4,,^A0B,26,28^FDS^FS";
+                    rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
+                    rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
+                    rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
+                    rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD"+ (pe.getCantidadReportada() - pe.getCantidad()) +" Pieza^FS";
+                    rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
+                    rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
+                    rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
+                    rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
+                    rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
+                    rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
+                    rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
+                    rpta += "^FO605,120^GB80,300,100^FS";
+                    rpta += "^LRY";
+                    rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
+                    rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
+                    rpta += "^XZ";
+                    System.out.println("Etiqueta de Bulto (Sobrante: "+ (pe.getCantidadReportada() - pe.getCantidad()) +") impresa");
+                break;
+            case 8: // Imprimir para Bultos (cantidad sobrante < cantidad teórica)
+                rpta = "^XA";
+                    rpta += "^FO160,0^FB370,4,,^A0B,22,24^FDNo. de parte: "+ pe.getCodigo() +"^FS";
+                    rpta += "^FO190,0^FB350,4,,^A0B,22,24^FDMarca: SIN MARCA^FS";
+                    rpta += "^FO225,80^FB320,4,,^A0B,60,66^FDContenido:^FS";
+                    rpta += "^FO295,60^FB320,4,,^A0B,60,66^FD"+ pe.getCantidadReportada() +" Pieza^FS";
+                    rpta += "^FO350,100^FB320,4,4,C^A0B,16,16^FDDESCRIPCION:\\&"+ pe.getDescripcion() +"^FS";
+                    rpta += "^FO400,30^FB300,4,,^ABB,1,5^FDPAIS ORIGEN: "+ pe.getPaisOrigen() +"^FS";
+                    rpta += "^FO430,100^FB320,4,4,C^A0B,16,16^FDIMPORTADOR: SANDVIK MINING AND CONSTRUCTION DE MEXICO SA DE CV^FS";
+                    rpta += "^FO480,100^FB320,4,4,C^A0B,16,16^FDDOMICILIO:Benjamin Franklin Lote 8 \\&Manzana 1 Tlajomulco de Zuniga Jalisco, \\&Mexico CP 45640^FS";
+                    rpta += "^FO560,90^FB300,4,,^APB,1,5^FD"+ actualDay +"^FS";
+                    rpta += "^FO560,50^FB260,4,,^APB,1,5^FD"+ pe.getFactura().getPedimento().getNoPedimento() +"^FS";
+                    rpta += "^FO560,10^FB165,4,,^APB,1,5^FD" + pe.getFactura().getNumFactura() +"^FS";
+                    rpta += "^FO605,120^GB80,300,100^FS";
+                    rpta += "^LRY";
+                    rpta += "^FO620,160,^AUB,1,5^FD"+ pe.getLocalidad()  +"^FS";
+                    rpta += "^FO238,5^BY2^BC,100,N,N,N,A^FD"+ pe.getCodigoEscaneo() +"^FS";
+                    rpta += "^XZ";
+                    System.out.println("Etiqueta de Bulto (Reportada: "+ pe.getCantidadReportada() +") impresa");
+                break;
+
+            default:
+                rpta = "Tipo de etiqueta no considerada.";
+                break;
         }
 
         ZebraLabel zebraLabel = new ZebraLabel(790, 540);
